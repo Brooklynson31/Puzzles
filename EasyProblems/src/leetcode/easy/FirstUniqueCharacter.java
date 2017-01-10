@@ -1,7 +1,5 @@
 package leetcode.easy;
 
-import java.util.HashSet;
-import java.util.Set;
 
 public class FirstUniqueCharacter {
 
@@ -9,14 +7,13 @@ public class FirstUniqueCharacter {
 		// TODO Auto-generated method stub
 		String s = "dddccdbba";
 		
-		System.out.println(firstUniqChar(s));
+		System.out.println(firstUniqueChar2(s));
 
 	}
 
 
 	public static int firstUniqChar(String s) {
 		
-	Set<Character> set = new HashSet<Character>();	
     
     if(s.length() == 1)
         return 0;
@@ -31,6 +28,19 @@ public class FirstUniqueCharacter {
 			}
  		}
    		return -1;    
+	}
+	
+	public static int firstUniqueChar2(String s){
+		int[] freq = new int[26];
+		for(int i = 0; i < s.length(); i++){
+			int f = s.charAt(i) - 'a';
+			freq[f]++;
+		}
+		
+		
+		
+		
+		return -1;
 	}
 }
 
