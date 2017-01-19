@@ -24,47 +24,11 @@ public class DeleteDuplicatesArray {
 	//second loop to reassgn values
 	//OR use hash map and incrememnt num of occurrences
 	public static int removeDuplicates(int[] nums) {
-//		if(nums.length < 3)
-//			return nums.length;
-//		int length = 0;
-//		//int[] test = new int[]{0,0,0,0,0,0,0,0,0,0};
-//		int[] test = new int[nums.length];
-//        for(int i = 0; i < nums.length; i++){
-//        	if(nums[i] < 0){ //cant handle negative integers -->make second array and use absolute val function
-//        		length++;
-//        	}
-//        	else{
-//        	test[nums[i]]++;
-//        
-//        	}
-//        }
-//       int repeat = 0;
-//		for(int i = 0; i < test.length; i++){
-//			if(test[i]  > 2){
-//				length = length+2;
-//				repeat = 2;
-//			}
-//			else if(test[i] > 0 && test[i] < 3){
-//				length = length+test[i];
-//				repeat = test[i];
-//			}
-//			
-//				int x = length;
-//				int j = length-repeat;
-//				while(j < x-1){
-//					nums[j] = i+1;
-//					j++;
-//				}
-//			}
-//		return length;
-		if (nums.length < 3){
-			return nums.length;
-		}
-		int length = 0;
-		Set<Integer> set = new TreeSet<Integer>();
-		
-		
-		return length;
+	    int i = 0;
+	    for (int n : nums)
+	        if (i < 2 || n > nums[i-2])
+	            nums[i++] = n;
+	    return i;
     }
 
 }
