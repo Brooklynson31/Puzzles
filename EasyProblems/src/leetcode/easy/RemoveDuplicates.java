@@ -1,7 +1,5 @@
 package leetcode.easy;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 public class RemoveDuplicates {
 	/*
@@ -12,7 +10,7 @@ public class RemoveDuplicates {
 	 */
 
 	public static void main(String[] args) {
-		int[] nums = new int[] {1,1,1};
+		int[] nums = new int[] {1,2};
 		System.out.println(removeDuplicates(nums));
 		System.out.println(Arrays.toString(nums));
 
@@ -20,31 +18,18 @@ public class RemoveDuplicates {
 		
 	}
 	 public static int removeDuplicates(int[] nums) {
-		 int newSize = nums.length;
-		 int j = nums.length;
-		 Set<Integer> dups = new HashSet<Integer>();	
-		 for(int i = 0; i < newSize; i++){
-			 if(dups.add(nums[i]) == false){
-				 newSize--;
-				 int temp = nums[i];
-				 nums[i] = nums[j-1];
-				 nums[j-1] = temp;
-				 int lastIndex = nums[newSize];
-				 if(lastIndex == nums[i]){
-					 newSize--;
-				 }
-				 else
-				 while(i <= newSize && nums[i] < lastIndex){
-					 nums[i+1] = nums[i];
-					 i++;
-				 }
-				 
-			 }
-			 
-		 }
-		 
-		 
-	     return newSize;   
+		 if(nums.length < 2)
+			 return nums.length;
+		 int length = 1;
+		 int k = 0;
+		 for(int i = 1; i < nums.length; i++){
+			 if(nums[i] != nums[k]){
+				 nums[++k] = nums[i];
+				 length++;
+
+			}
+		  }	
+	     return length;   
 	    }
 
 }
