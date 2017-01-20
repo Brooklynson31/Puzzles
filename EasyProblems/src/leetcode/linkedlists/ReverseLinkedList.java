@@ -1,5 +1,7 @@
 package leetcode.linkedlists;
 
+import java.util.Stack;
+
 public class ReverseLinkedList {
 
 	public static void main(String[] args) {
@@ -28,25 +30,12 @@ public class ReverseLinkedList {
 		}
 	}
 	
-//	public static ListNode reverseList(ListNode head) {
-//       if(head == null || head.next == null){
-//    	   return head;
-//       }
-//       ListNode prev = head.next;
-//       ListNode curr = head;
-//       prev = reverseList(prev);
-//       prev.next = curr;
-//		curr.next = null;
-//		return prev.next;
-//    }
+
 	
 	
-	///Try figuring out using iterative and recursive solution
-	//recursive
-	//allows my to get to the last node and change it to point to the previous value
-	//can then have previous value just point to null to avoid loop
-	//Iterative
-	//can traverse the list without affecting pointers
+	//to make faster and remove while loop, try adding another pointer to make list faster
+	//have head be value returned by  recursive call
+	//figure out a way to change pointers without traversing
 	public static ListNode reverseList(ListNode head) {
 	       if(head == null || head.next == null){
 	    	   return head;
@@ -62,5 +51,29 @@ public class ReverseLinkedList {
 	       next.next = curr;	//add to the end of the new list
 			return(head.next == null) ? next: head; //checks if you are at the end of the original list
 	    }
+	
+	
+//	public static ListNode reverseList(ListNode head) {
+//	       if(head == null || head.next == null){
+//	    	   return head;
+//	       }
+//	       Stack<ListNode> stack = new Stack<ListNode> ();
+//	       ListNode curr = head;
+//	       while(curr != null){ 
+//	    	   stack.push(curr);
+//	    	   curr = curr.next;
+//	    	}
+//	       head = stack.pop();
+//	       head.next = null;
+//	       curr = head;
+//	       
+//	       while(!stack.isEmpty()){
+//	    	   ListNode reverse = stack.pop();
+//	    	   reverse.next = null;
+//	    	   curr.next = reverse;
+//	    	   curr = curr.next;
+//	       }
+//			return head; 
+//	    }
 
 }
