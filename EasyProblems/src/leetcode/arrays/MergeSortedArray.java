@@ -23,46 +23,50 @@ public class MergeSortedArray {
 		//if time/memory limit exceeded, and need to in place, store values in nums1 before replacing/removing
 		public static void merge(int[] nums1, int m, int[] nums2, int n) {
 			int[] temp = new int[m+n];
-			temp = nums1;
-			  if(n == 0){
-				
-		            return;
-			  }		
-				if(m == 0){
-						for(int i = 0; i <= nums1.length-1;i++ ){
-							nums1[i] = nums2[i];
+			
+			  if(n == 0)
+				  return;
+			  if(m == 0){
+					for(int i = 0; i <= nums1.length-1;i++ ){
+						nums1[i] = nums2[i];
 						}
 						return;
 					}
+			  
+			  		for(int i = 0; i < nums1.length;i++){
+			  			temp[i] = nums1[i];
+			  		}
 					
-				int left = 0;
-				int right = 0;
-				int k = 0;
+			  		int left = 0; //try setting left and right to m and n respectively
+			  		int right = 0;
+			  		int k = 0;
 				//cant assign temp to nums1 in end, but can set temp before to nums1 and 
-				while(left < m && right < n){
-					if(temp[left] < nums2[right]){
-						nums1[k] = temp[left];
-						left++;
-					} else {
-						nums1[k] = nums2[right];
-						right++;
-					}
-					k++;
-				}
-				if(left < m){
-					while(left < m){
-						nums1[k] = temp[left];
-						left++;
-					}
-				} else if (right < n){
-					while(right < n){
-						nums1[k] = nums2[right];
-						right++;
-					}
-				}
-			
 				
-				}
+			  		while(left < m && right < n){
+			  			if(temp[left] < nums2[right]){
+			  				nums1[k] = temp[left];
+			  				left++;
+			  			} else {
+			  				nums1[k] = nums2[right];
+			  				right++;
+			  			}
+			  			k++;
+			  		}
+			  		
+			  		if(left < m){
+			  			while(left < m){
+			  				nums1[k] = temp[left];
+			  				left++;
+			  				k++;
+			  			}
+			  		} else if (right < n){
+			  			while(right < n){
+			  				nums1[k] = nums2[right];
+			  				right++;
+			  				k++;
+			  			}
+			  		}
+		}
 		
 		
 
