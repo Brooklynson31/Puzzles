@@ -1,5 +1,8 @@
 package leetcode.strings;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class RepeatedSubStringPattern {
 //	Given a non-empty string check if it can be constructed by taking a substring of it and appending multiple copies of the substring together. You may assume the given string consists of lowercase English letters only and its length will not exceed 10000.
 //
@@ -22,27 +25,73 @@ public class RepeatedSubStringPattern {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String str = "abcabcabcabc";
+		String str = "abcabcabc";
 		System.out.println(repeatedSubstringPattern(str));
+//		int result=0;
+//		for(int i = 0; i < str.length(); i++){
+//			result = result ^ str.charAt(i);
+//			System.out.println(result);;
+//		}
 	}
+	//hast table if doest work
+//	 public static boolean repeatedSubstringPattern(String str) {
+//		  if(str.length() <= 1){
+//				return false;
+//			}
+//		  Set<Character> set = new HashSet<Character>();
+//	        	int[] alpha = new int[26];
+//	        	int index = -1;
+//	        	for(int i =0;i < str.length(); i++){
+//				char c = str.charAt(i);
+//				if(set.contains(c) == false){
+//					set.add(c);
+//				}
+//				if(alpha[c-'a'] == 0){
+//					++alpha[c-'a'];
+//					index = alpha[c-'a'];
+//				} else {
+//					--alpha[c- 'a'];
+//					index = alpha[c-'a'];
+//				}
+//			}
+//			
+//			for(int i =0; i < alpha.length;i++){				
+//				if(alpha[i] != index)
+//					return false;
+//				
+//			}
+//			return true;
+//
+//	    }
+	
+//	public static boolean repeatedSubstringPattern(String str) {
+//		int result = 0;
+//		for(int i=0; i < str.length(); i++){
+//			result ^= str.charAt(i); 
+//		}
+//
+//
+//		return (result == 0);
+//	}
 	
 	public static boolean repeatedSubstringPattern(String str) {
-		int index = 0;
-		int[] alpha = new int[26];
+    	int index = 0;
+	    int[] alpha = new int[26];
+
 		for(int i =0;i < str.length(); i++){
 			char c = str.charAt(i);
-			if(++alpha[c-'a'] > 1){
-				alpha[c-'a']--;
-				index = i;
-				break; 
-			}
+				if(alpha[c-'a'] == 0){
+					++alpha[c-'a'];
+					index = alpha[c-'a'];
+				} else if (--alpha[c-'a'] == 0) {
+					--alpha[c- 'a'];
+					index = alpha[c-'a'];
+				}
 		}
-		str.substring(0, index);
-		
-		
-		
-		
-		return true;
+
+		return false;
     }
+	
+
 
 }

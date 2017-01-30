@@ -36,7 +36,6 @@ public class ValidPalinDrone {
 				char a = test.charAt(i);
 				char b = test.charAt(j);
 				if(a != b){
-					System.out.println(i);
 					return false;
 				}
 				j--;
