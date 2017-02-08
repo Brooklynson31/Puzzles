@@ -23,17 +23,23 @@ public class GuessGame {
 
 	}
 	
-	public int guessNumber(int n) {
-		return bsearch(1,n);
-    }
-	
-	private int bsearch(int start, int end) {
-		
-		return 0;
-	}
-	public int guess(int num){
-		return 1;
-	}
+    public int guessNumber(int n) {
+        return bsearch(1,n);
+ }
+     private int bsearch(int min,int max){
+          int mid = max/2;
+
+         if (guess(mid) == 0) {
+             return mid;
+         } else if (guess(mid) == -1) {
+             return bsearch(min, mid);
+         } else {
+             return bsearch(mid + 1, max);
+         }
+ }
+     public int guess (int num){
+    	 return 0;
+     }
 
 	
 
