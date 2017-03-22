@@ -27,7 +27,6 @@ public class HammingWeight {
         					// reassigns n to an int that will have one less 1 bit in it
         	count++; //counts how many times it runs this operation
         }
-		
 		return count;
     }
 	
