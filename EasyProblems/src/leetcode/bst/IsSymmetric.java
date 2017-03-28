@@ -1,5 +1,7 @@
 package leetcode.bst;
 
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class IsSymmetric {
 
@@ -19,47 +21,66 @@ public class IsSymmetric {
 		c.left = g;
 		c.right = f;
 		
-		System.out.println(isSymmetric2(a));
+		a.left = b;
+		a.right = c;
+		b.right = d;
+		c.right = f;
+		
+		System.out.println(isSymmetric(a));
 		
 		
 	}
 	
-	public static boolean isSymmetric(TreeNode root) {
-        if(root == null) return true;
-		
-        isSymmetric(root.left);
-        isSymmetric(root.right);
-		
-		return (root.left == root.right) ?true  : false;
-    }
-	
-	public static boolean isSymmetric2(TreeNode root) {
-        if(root == null) return true;
-		
-        TreeNode left = subleft(root.left);
-        TreeNode right = root.right;
-       
-		
-		return (left == right) ?true  : false;
-    }
+
 	
 	//actually use breadth first search(use a queue to figure out solution)
 	
-	public static TreeNode subright(TreeNode head) {
-		TreeNode temp = head.right;
-		head.right = head.left;
-		head.left = temp;
-	
+    public static boolean isSymmetric(TreeNode root) {
+        if(root == null) return true;
+        
+        if(root.left == null && root.right == null)
+        return true;
 		
-		return head;
-	}
+        Queue<TreeNode> leftsub = new LinkedList<TreeNode>();	
+        Queue<TreeNode> rightsub = new LinkedList<TreeNode>();
+        
+        leftsub.add(root.left);
+        rightsub.add(root.right);
 
-	public static TreeNode subleft(TreeNode head){
-		TreeNode temp = head.left;
-		head.left = head.right;
-		head.right = temp;
-	
-		return head;
-	}
+        while(!leftsub.isEmpty() && !rightsub.isEmpty()){
+        	TreeNode left = leftsub.remove();
+        	TreeNode right = rightsub.remove();
+        	
+        	if(left == null || right == null)
+        		return false;
+        	
+        	
+        	if(left.left != null && right.right != null){
+        		leftsub.add(left.left);
+        		rightsub.add(right.right);
+        	} else if ((left.left != null && right.right == null )|| (left.left == null && right.right != null)){
+        		return false;
+        	}
+        	if(left.right != null && right.left != null){
+        		leftsub.add(left.right);
+        		rightsub.add(right.left);
+        	}
+        	else if((left.right == null && right.left != null ) || (left.right != null && right.left == null)){
+        		return false;
+        	}
+        	
+        	if(left.val != right.val){
+        		return false;
+        	}
+        	
+ 
+        	
+        	
+        }
+		
+		return true;
+    }
+
+
 
 }
